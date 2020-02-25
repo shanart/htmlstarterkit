@@ -4,8 +4,7 @@ var gulp = require("gulp"),
     autoprefixer = require("autoprefixer"),
     cssnano = require("cssnano"),
     sourcemaps = require("gulp-sourcemaps"),
-    nunjucks = require('gulp-nunjucks'),
-    data = require('gulp-data'),
+    fileinclude = require('gulp-file-include'),
     browserSync = require("browser-sync").create();
 
 var paths = {
@@ -22,13 +21,6 @@ var paths = {
     dist: "dist/"
 };
 
-
-function templates() {
-    return gulp.src(paths.templates.src)
-        .pipe(nunjucks.compile())
-        .pipe(gulp.dest(paths.dist))
-        .pipe(browserSync.stream());
-}
 
 function style() {
     return gulp
@@ -50,23 +42,23 @@ function reload() {
     browserSync.reload();
 }
 
+function html() {
+    return gulp.src(['./src/templates/*.html'])
+        .pipe(fileinclude())
+        .pipe(gulp.dest('./dist/'));
+}
 
-// Add browsersync initialization at the start of the watch task
 function watch() {
     browserSync.init({
-        // You can tell browserSync to use this directory and serve it as a mini-server
         server: {
             baseDir: paths.dist
         }
-        // If you are already serving your website locally using something like apache
-        // You can use the proxy setting to proxy that instead
-        // proxy: "yourlocal.dev"
     });
     gulp.watch(paths.styles.src, style);
-    // We should tell gulp which files to watch to trigger the reload
-    // This can be html or whatever you're using to develop your website
-    // Note -- you can obviously add the path to the Paths object
-    gulp.watch(path.templates.src, reload);
+
+    gulp.watch(paths.templates.src, html);
+
+    gulp.watch(paths.templates.src, reload);
 }
 
 
@@ -78,7 +70,8 @@ exports.watch = watch
 // $ gulp style
 exports.style = style;
 
-exports.templates = templates;
+exports.html = html;
+
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
