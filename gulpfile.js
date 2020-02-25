@@ -89,9 +89,9 @@ function watch() {
     browserSync.init({
         server: {
             baseDir: paths.dist,
-            port: 9000,
-            open: false
-        }
+        },
+        port: 9000,
+        open: false
     });
     gulp.watch(paths.styles.src, style);
 
