@@ -1,0 +1,13 @@
+.test {
+    padding: 1px solid;
+    ul {
+        li {
+            a {
+                color: greenyellow;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
