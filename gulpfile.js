@@ -3,12 +3,13 @@ var gulp = require("gulp"),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
     cssnano = require("cssnano"),
-    gcmq = require('gulp-group-css-media-queries'),
-    concat = require('gulp-concat'),
-    babel = require('gulp-babel'),
-    uglify = require('gulp-uglify'),
+    gcmq = require("gulp-group-css-media-queries"),
+    concat = require("gulp-concat"),
+    babel = require("gulp-babel"),
+    uglify = require("gulp-uglify"),
+    cleanCSS = require("gulp-clean-css"),
     sourcemaps = require("gulp-sourcemaps"),
-    fileinclude = require('gulp-file-include'),
+    fileinclude = require("gulp-file-include"),
     browserSync = require("browser-sync").create();
 
 var paths = {
@@ -55,20 +56,20 @@ function js() {
 
 
 function style() {
-    return gulp
-        .src(paths.styles.src)
-        // Initialize sourcemaps before compilation starts
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        .on("error", sass.logError)
-        // Use postcss with autoprefixer and compress the compiled file using cssnano
-        .pipe(postcss([autoprefixer(), cssnano()]))
-        .pipe(gcmq())
-        // Now add/write the sourcemaps
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths.styles.dest))
-        // Add browsersync stream pipe after compilation
-        .pipe(browserSync.stream());
+    return (
+        gulp.src(paths.styles.src)
+            // .pipe(sourcemaps.init())
+            .pipe(sass())
+            .on("error", sass.logError)
+
+            .pipe(postcss([autoprefixer(), cssnano()]))
+            .pipe(gcmq())
+            .pipe(cleanCSS())
+
+            // .pipe(sourcemaps.write())
+            .pipe(gulp.dest(paths.styles.dest))
+            .pipe(browserSync.stream())
+    );
 }
 
 function reload() {
