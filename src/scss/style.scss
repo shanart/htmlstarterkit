@@ -5,8 +5,16 @@ body, html {
 }
 
 .test {
-    padding: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
     ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width:  100%;
+        
         li {
             a {
                 color: greenyellow;
