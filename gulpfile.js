@@ -14,13 +14,11 @@ var gulp = require("gulp"),
 
 var paths = {
     styles: {
-        // By using styles/**/*.sass we're telling gulp to check all folders for any sass file
         src: "src/scss/*.scss",
-        // Compiled files will end up in whichever folder it's found in (partials are not compiled)
         dest: "dist/css"
     },
     templates: {
-        src: "src/templates/**/*.html",
+        src: "src/templates/*.html",
         dest: "dist/"
     },
     js: {
@@ -94,13 +92,20 @@ function watch() {
         port: 9000,
         open: false
     });
+
     gulp.watch(paths.styles.src, style);
+    gulp.watch(paths.styles.src, reload);
+
+    gulp.watch("src/scss/**/*.scss", style);
+    gulp.watch("src/scss/**/*.scss", reload);
 
     gulp.watch(paths.js.src, js);
     gulp.watch(paths.js.src, reload);
 
-    gulp.watch(paths.templates.src, html);
+    gulp.watch("./src/templates/**/*.html", html);
+    gulp.watch("./src/templates/**/*.html", reload);
 
+    gulp.watch(paths.templates.src, html);
     gulp.watch(paths.templates.src, reload);
 }
 
@@ -114,7 +119,7 @@ exports.style = style;
 /*
  * javascirpt libraries
  */
-exports.js_libs = js_libs; 
+exports.js_libs = js_libs;
 
 /*
  * javascirpt
@@ -130,7 +135,7 @@ exports.html = html;
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
 var build = gulp.parallel(style, watch);
- 
+
 /*
  * You can still use `gulp.task` to expose tasks
  */

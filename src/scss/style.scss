@@ -4,24 +4,17 @@ body, html {
     padding: 0;
 }
 
-.test {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-    ul {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width:  100%;
-        
-        li {
-            a {
-                color: greenyellow;
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-        }
-    }
+
+::placeholder {
+  color: gray;
+}
+
+.image {
+  background-image: url(image@1x.png);
+  transition: all 4s ease;
+}
+@media (min-resolution: 2dppx) {
+  .image {
+    background-image: url(image@2x.png);
+  }
 }

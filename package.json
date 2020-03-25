@@ -7,7 +7,7 @@
         "start": "gulp"
     },
     "browserslist": [
-        "last 20 versions"
+        "last 10 versions"
     ],
     "keywords": [],
     "author": "Alex Shanin",
