@@ -1,16 +1,30 @@
-@@include('./parts/_head.html', {
-    "title": "home page"
-})
-@@include('./parts/_header.html')
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h1>Home page 2</h1>
+    <title>Circle slider</title>
 
-<div class="test">
-    <ul>
-        <li><a href="#">test</a></li>
-        <li><a href="#">test</a></li>
-        <li><a href="#">test</a></li>
-    </ul>
-</div>
-@@include('./parts/_footer.html')
-@@include('./parts/_bottom.html')
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+
+    <button data-c-action="prev">prev</button>
+    <button data-c-action="next">next</button>
+
+    <div class="circle-carousel" data-c-area="circle-carousel">
+        <div data-c-item="1" class="__circle_item">1 PGT-A</div>
+        <div data-c-item="2" class="__circle_item">2 PGT-M</div>
+        <div data-c-item="3" class="__circle_item">3 PGT-SR</div>
+        <div data-c-item="4" class="__circle_item">4 PGT-HLA</div>
+        <div data-c-item="5" class="__circle_item">5 PGT-A</div>
+        <div data-c-item="6" class="__circle_item">6 PGT-M</div>
+        <div data-c-item="7" class="__circle_item">7 PGT-SR</div>
+        <div data-c-item="8" class="__circle_item">8 PGT-HLA</div>
+    </div>
+
+    <script src="./js/lib.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

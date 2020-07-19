@@ -34,7 +34,6 @@ var paths = {
 function js_libs() {
     return gulp.src([
             'node_modules/jquery/dist/jquery.min.js',
-            'node_modules/bootstrap/dist/js/bootstrap.min.js',
         ])
         .pipe(concat('lib.js'))
         .pipe(gulp.dest(paths.js.dest));
@@ -47,7 +46,7 @@ function js() {
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest(paths.js.dest));
 }
 
